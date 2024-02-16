@@ -37,8 +37,8 @@ const Header: FC = () => {
   };
 
   return (
-    <div className="w-full">
-      <header className="flex justify-between font-extrabold text-[14px] w-[90%] m-auto py-7 phone:h-3 ">
+    <>
+      <header className="sticky top-0 z-10 bg-black shadow-md flex justify-between font-extrabold text-[14px] w-[90%] m-auto py-7 phone:h-3 ">
         <div>
           <h1>Artisan Resto Cafe</h1>
         </div>
@@ -54,28 +54,29 @@ const Header: FC = () => {
           </div>
         </div>
       </header>
-
-      <div className="sm:w-[100%] phone:py-0 phone:h-10 ">
-        <ul className="flex gap-5 py-5 w-[90%] m-auto phone:overflow-auto phone:mb-10">
-          {items?.data[0]?.table_menu_list?.map((item, index) => {
-            const isActive = item.menu_category_id === activeCategory?.menu_category_id;
-            return (
-              <li
-                className={`phone:whitespace-nowrap relative cursor-pointer before:content-[''] before:w-[100%] before:h-1 before:absolute before:bottom-[-10px] ${
-                  isActive
-                    ? "text-red-600 before:bg-red-600" // Active category styles
-                    : "hover:text-red-600 before:bg-[#ffff] hover:before:bg-red-600" // Non-active category styles
-                } ${isActive ? "" : "before:hidden hover:before:block"}`}
-                key={index}
-                onClick={() => handleCategoryClick(item)}
-              >
-                {item.menu_category}
-              </li>
-            );
-          })}
-        </ul>
+      <div className="w-full ">
+        <div className="sm:w-[100%] phone:py-0 phone:h-10 ">
+          <ul className="flex gap-5 py-5 w-[90%] m-auto phone:overflow-auto phone:mb-10">
+            {items?.data[0]?.table_menu_list?.map((item, index) => {
+              const isActive = item.menu_category_id === activeCategory?.menu_category_id;
+              return (
+                <li
+                  className={`phone:whitespace-nowrap relative cursor-pointer before:content-[''] before:w-[100%] before:h-1 before:absolute before:bottom-[-10px] ${
+                    isActive
+                      ? "text-red-600 before:bg-red-600" // Active category styles
+                      : "hover:text-red-600 before:bg-[#ffff] hover:before:bg-red-600" // Non-active category styles
+                  } ${isActive ? "" : "before:hidden hover:before:block"}`}
+                  key={index}
+                  onClick={() => handleCategoryClick(item)}
+                >
+                  {item.menu_category}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
